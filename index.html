@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>一言API测试©张高超</title>
+    <!--一言的API js轻量版-->
+    <!-- <script src="https://v1.hitokoto.cn/?c=a&c=j&c=b&c=i&encode=js&select=%23hitokoto" defer></script> -->
+
+        <script>//一言   json版   不兼容 IE
+        // 一言 帮助 文档 参数介绍 https://developer.hitokoto.cn/sentence/#%E8%BF%94%E5%9B%9E%E6%A0%BC%E5%BC%8F
+            fetch('https://v1.hitokoto.cn/?c=j&c=a')
+              .then(response => response.json())
+              .then(data => {
+                  //输出到id=hitokoto  内容
+                const hitokoto = document.getElementById('hitokoto')
+                hitokoto.innerText = data.hitokoto;
+                //输出到id=from  出处
+                const from = document.getElementById('from')
+                from.innerText = data.from;
+                //输出到id=creator  作者
+                const creator = document.getElementById('creator')
+                creator.innerText = data.creator
+
+              })
+              .catch(console.error)
+          </script>
+
+
+    <script type="text/javascript">//5张随机背景
+        //核心的程序就是这些。尽管很简单，却是一种小小的思路，若以此为基础，通过加工可以做出一些扩展功能。比如：主题切换以及其它的随机呈现等等。下面是完整的JS代码。
+
+        //<!CDATA[
+        var bodyBgs = [];//背景图  url
+        bodyBgs[0] = "https://c.wallhere.com/photos/45/bb/sky_schoolgirl_school_uniform_nature_landscape_dragonflies_anime-1218769.jpg!d";
+        bodyBgs[1] = "https://api.fczbl.vip/bing/";
+        bodyBgs[2] = "https://dss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/crop=72,0,1728,1080/sign=883b9b4b404a20a425516687ad65aa0e/9345d688d43f87946fef8b77dd1b0ef41bd53a53.jpg";
+        bodyBgs[3] = "https://tva2.sinaimg.cn/large/006AYjs4ly1g7wxj1iitbj318g0rhkfd.jpg";
+        bodyBgs[4] = "https://s1.ax1x.com/2020/03/23/8TvGQK.jpg";
+
+        var randomBgIndex = Math.round(Math.random() * 4);
+
+        //输出随机的背景图   输出到  .cn  class  中
+        document.write('<style>.cn{background:url(' + bodyBgs[randomBgIndex] + ') no-repeat 50% 50%;background-attachment:fixed;background-size: cover;}</style>');
+        //]]>
+    </script>
+
+    <script>//刷新页面 按钮
+        function reloadPage() {
+            location.reload()
+        }
+    </script>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* font-size:10px;
+        
+        background-image: url(https://www.runoob.com/try/demo_source/smiley.gif);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 50%;  */
+        }
+
+        .cn {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background: url(http://tva2.sinaimg.cn/large/006AYjs4ly1g7wxj1iitbj318g0rhkfd.jpg) fixed no-repeat;
+            background-size: cover; */
+        }
+
+        .cn>div {
+            margin: 0;
+            line-height: 1.5em;
+            padding: 0.2em 0em;
+            text-align: center;
+            font-size: 1.6em;
+            color: #fff;
+            width: 90vw;
+            background-color: rgb(0, 0, 0, 0.3);
+            margin-block-start: 0em;
+            margin-block-end: 0em;
+        }
+        .cn>div>samp{
+            font-size: 0.5em;
+        }
+
+
+        input {
+            display: flex;
+            margin: 0;
+            padding: 0.2em 0.2em 0em 45vw;
+            text-align: center;
+            color: #fff;
+            width: 90vw;
+            text-align: center;
+            background-color: rgb(0, 0, 0, 0.2);
+            border-width: 0px;
+            border-color: rgb(0, 0, 0, 0.0)
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="cn" id="cn">
+        <div>
+            <span id="hitokoto" class="catname">:D 获取中...</span>
+            <br>
+            <samp>出自:</samp>
+            <samp id="from" >:D 获取中...</samp><samp>&nbsp;</samp>
+            <samp>作者:</samp>
+            <samp id="creator">:D 获取中……</samp>
+            <input type="button" value="刷新" onclick="reloadPage()">
+        </div>
+    </div>
+</body>
+
+</html>
